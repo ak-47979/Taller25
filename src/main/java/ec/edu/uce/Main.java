@@ -1,6 +1,8 @@
 package ec.edu.uce;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import ec.edu.uce.aplication.service.CuentaService;
 import ec.edu.uce.aplication.service.TransferenciaService;
@@ -40,20 +42,31 @@ public static class App implements  QuarkusApplication{
         System.out.println( cOrigen.toString());
         System.out.println(cDestino.toString());
 
-        Transferencia transferencia = new Transferencia();
-        transferencia.setCuentaOrigen(cOrigen);
-        transferencia.setCuentaDestino(cDestino);
-        transferencia.setMonto(new BigDecimal(200));
-        transferenciaService.crear(transferencia);
+        BigDecimal montoTrans=new BigDecimal(200);
+       
         
 
-        transferenciaService.realizar(cOrigen.getId(), cDestino.getId(), transferencia.getMonto());
+        transferenciaService.realizar(cOrigen.getId(), cDestino.getId(), montoTrans);
 
 
          System.out.println("CUENTAS DESPUES DE TRANSFERENCIA ");
          System.out.println( cuentaService.findId(1));
          System.out.println( cuentaService.findId(2));
         
+
+        Cuenta c1 = cuentaService.findId(1);
+        Cuenta c2 = cuentaService.findId(2);
+        c1.getTransferenciasEnviadas();
+        c1.getTransferenciasRecibidas();
+
+
+        List<Transferencia>t1 = c2.getTransferenciasEnviadas();
+        List<Transferencia>t2 = c2.getTransferenciasEnviadas();
+        c2.getTransferenciasRecibidas();
+        
+        List<Cuenta> cuenta = new ArrayList<>();
+
+
         return 0;
     }
 

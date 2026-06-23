@@ -37,8 +37,8 @@ public class TransferenciaRepositoryImpl implements TransferenciaRepository {
 
     origen.setSaldo(origen.getSaldo().subtract(monto));
     destino.setSaldo(destino.getSaldo().add(monto));
-    em.persist(origen);
-    em.persist(destino);
+    em.merge(origen);
+    em.merge(destino);
     }
 
 

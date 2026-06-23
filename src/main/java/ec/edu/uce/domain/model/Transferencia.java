@@ -1,6 +1,7 @@
 package ec.edu.uce.domain.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +24,9 @@ public class Transferencia {
  
     @Column(name="tran_monto")
     private BigDecimal monto;
-   
+     @Column(name="tran_fecha")
+     private LocalDate fecha;
+
       @ManyToOne
     @JoinColumn(name = "tran_origen")
     private Cuenta cuentaOrigen;
@@ -32,6 +35,7 @@ public class Transferencia {
     @JoinColumn(name = "tran_destino")
     private Cuenta cuentaDestino;
 
+    
     
       public Transferencia(BigDecimal monto, Cuenta cuentaOrigen, Cuenta cuentaDestino) {
         this.monto = monto;
@@ -76,6 +80,12 @@ public class Transferencia {
         sb.append(", cuentaDestino=").append(cuentaDestino);
         sb.append('}');
         return sb.toString();
+    }
+    public LocalDate getFecha() {
+        return fecha;
+    }
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
      
 
