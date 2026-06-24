@@ -12,6 +12,7 @@ import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 @QuarkusMain
 public class Main {
@@ -25,6 +26,7 @@ public static class App implements  QuarkusApplication{
     @Inject
     private CuentaService cuentaService;
     @Override
+    @Transactional
     public int run(String... args) throws Exception {
         System.out.println("Conectado a la base");
         Cuenta cOrigen = new Cuenta();
@@ -63,10 +65,23 @@ public static class App implements  QuarkusApplication{
         List<Transferencia>t1 = c2.getTransferenciasEnviadas();
         List<Transferencia>t2 = c2.getTransferenciasEnviadas();
         c2.getTransferenciasRecibidas();
-        
+       
         List<Cuenta> cuenta = new ArrayList<>();
+        for (Object elem : cuenta) {
+            System.out.println(elem.toString());
+        }
+        
+        System.out.println("Fechas de transferencia1");
+        for (Object elem : t1) {
 
+            System.out.println("Fecha: "+elem.toString());
+        }
+          System.out.println("Fechas de transferencia2");
+         for (Object elem : t2) {
+            System.out.println("Fecha: "+elem.toString());
+        }
 
+       
         return 0;
     }
 

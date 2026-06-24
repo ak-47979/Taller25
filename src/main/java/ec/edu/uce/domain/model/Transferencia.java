@@ -24,10 +24,10 @@ public class Transferencia {
  
     @Column(name="tran_monto")
     private BigDecimal monto;
-     @Column(name="tran_fecha")
-     private LocalDate fecha;
+    @Column(name="tran_fecha")
+    private LocalDate fecha;
 
-      @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "tran_origen")
     private Cuenta cuentaOrigen;
 
@@ -35,7 +35,7 @@ public class Transferencia {
     @JoinColumn(name = "tran_destino")
     private Cuenta cuentaDestino;
 
-    
+     
     
       public Transferencia(BigDecimal monto, Cuenta cuentaOrigen, Cuenta cuentaDestino) {
         this.monto = monto;

@@ -23,18 +23,7 @@ public class TransferenciaRepositoryImpl implements TransferenciaRepository {
     public void realizar(Integer idOrigen, Integer idDestino, BigDecimal monto) {
         Cuenta origen=this.em.find(Cuenta.class, idOrigen);
         Cuenta destino=this.em.find(Cuenta.class, idDestino);
-          if (origen == null || destino == null) {
-        throw new RuntimeException("Cuenta no encontrada");
-    }
-
-     if (monto.compareTo(BigDecimal.ZERO) <= 0) {
-        throw new RuntimeException("El monto debe ser mayor que cero");
-    }
-
-    if (origen.getSaldo().compareTo(monto) < 0) {
-        throw new RuntimeException("Saldo insuficiente");
-    }
-
+         
     origen.setSaldo(origen.getSaldo().subtract(monto));
     destino.setSaldo(destino.getSaldo().add(monto));
     em.merge(origen);
